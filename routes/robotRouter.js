@@ -3,12 +3,18 @@ const robotRouter = express.Router();
 const Robot = require("../models/robot");
 
 //find by name of Robot
-robotRouter.get("/robots/name", function(req, res, next) {
-  Robot.find({ name: "magnetic field" }).then(function(robots) {
-    res.send(robots);
+robotRouter.get("/robots/:name", function(req, res, next) {
+  Robot.find({ name: req.params.name }).then(function(robot) {
+    res.send(robot);
   });
 });
 
+// all robots
+robotRouter.get("/robots", function(req, res, next) {
+  Robot.find({}).then(function(robots) {
+    res.send(robots);
+  });
+});
 //find by weapon
 robotRouter.get("/robots/weapons/code", function(req, res, next) {
   Robot.find({ "weapons.weapon": "code" }).then(function(robots) {
