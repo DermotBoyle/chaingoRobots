@@ -5,10 +5,11 @@ const Schema = mongoose.Schema;
 const RobotSchema = new Schema({
   type: {
     type: String,
-    required: [true, "All robots need a unique name"]
+    required: [true, "All robots need a type"]
   },
   name: {
-    type: String
+    type: String,
+    required: [true, "All robots need a name"]
   },
 
   serialnumber: {
@@ -27,6 +28,7 @@ const RobotSchema = new Schema({
     serialnumber: { type: String }
   },
 
+  // are the robots operational or in the junkyard
   condition: {
     type: Boolean,
     default: true
