@@ -1,14 +1,23 @@
 const express = require("express");
-const Robot = require("../models/robotModel");
-
 const robotRouter = express.Router();
+const Robot = require("../models/robot");
 
-robotRouter.route("/").get((req, res) => {
-  console.log("route");
-  Robot.find({}, (err, robots) => {
-    console.log("results");
-    res.json(robots);
+robotRouter.get("/robots", function(req, res) {
+  res.send({ type: "GET" });
+});
+
+robotRouter.post("/robots", function(req, res) {
+  Robot.create(req.body).then(function(robot) {
+    res.send(robot);
   });
+});
+
+robotRouter.put("/robots/:name", function(req, res) {
+  res.send({ type: "PUT" });
+});
+
+robotRouter.delete("/robots/:name", function(req, res) {
+  res.send({ type: "DELETE" });
 });
 
 module.exports = robotRouter;
