@@ -28,6 +28,11 @@ robotRouter.get("/robots/weapons/acid", function(req, res, next) {
   });
 });
 
+robotRouter.get("/robots/weapons/map", function(req, res, next) {
+  Robot.find({ "weapons.weapon": "map" }).then(function(robots) {
+    res.send(robots);
+  });
+});
 //find by armour
 robotRouter.get("/robots/armour/shield", function(req, res, next) {
   Robot.find({ "armours.armour": "shield" }).then(function(robots) {
@@ -60,7 +65,7 @@ robotRouter.put("/robots/:id", function(req, res, next) {
     robot
   ) {
     Robot.findOne({ _id: req.params.id }).then(function(robot) {
-      res.send(ninja);
+      res.send(robot);
     });
   });
 });
