@@ -11,6 +11,8 @@ robotRouter.get("/robots/:name", function(req, res, next) {
 
 // all robots
 robotRouter.get("/robots", function(req, res, next) {
+  console.log("/api/robots", req.body);
+
   Robot.find({}).then(function(robots) {
     res.send(robots);
   });
@@ -59,7 +61,6 @@ robotRouter.get("/robots/armour/invisiblefield", function(req, res, next) {
 });
 
 robotRouter.post("/robots", function(req, res, next) {
-  console.log("POST /api/robots", req.body);
   Robot.create(req.body)
     .then(function(robot) {
       res.send(robot);
