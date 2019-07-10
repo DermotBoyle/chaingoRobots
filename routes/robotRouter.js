@@ -59,6 +59,7 @@ robotRouter.get("/robots/armour/invisiblefield", function(req, res, next) {
 });
 
 robotRouter.post("/robots", function(req, res, next) {
+  console.log("POST /api/robots", req.body);
   Robot.create(req.body)
     .then(function(robot) {
       res.send(robot);
