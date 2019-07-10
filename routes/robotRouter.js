@@ -68,6 +68,8 @@ robotRouter.post("/robots", function(req, res, next) {
     .catch(next);
 });
 
+//update field
+
 robotRouter.put("/robots/:id", function(req, res, next) {
   Robot.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function(
     robot
@@ -75,6 +77,14 @@ robotRouter.put("/robots/:id", function(req, res, next) {
     Robot.findOne({ _id: req.params.id }).then(function(robot) {
       res.send(robot);
     });
+  });
+});
+
+//delete robots
+
+robotRouter.delete("/robots/:name", function(req, res, next) {
+  Robot.findOneAndDelete({ name: req.params.name }).then(function(robot) {
+    res.send(robot);
   });
 });
 

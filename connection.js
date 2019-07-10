@@ -3,10 +3,13 @@ const mongoose = require("mongoose");
 function connect() {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect("mongodb://localhost/robotschaingo", {
-        useNewUrlParser: true,
-        useCreateIndex: true
-      })
+      .connect(
+        process.env.MONGODB_URI || "mongodb://localhost:27017/robotschaingo",
+        {
+          useNewUrlParser: true,
+          useCreateIndex: true
+        }
+      )
       .then((res, err) => {
         if (err) return reject(err);
         resolve();

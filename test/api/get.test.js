@@ -5,12 +5,13 @@ const server = require("../../app");
 //is able to fetch robot data
 
 describe("GET /api", () => {
-  it("OK, fetching robots works", done => {
+  it("Fetching robots", done => {
     request(server)
       .get("/api/robots")
       .then(res => {
-        console.log(res, res.status);
+        console.log("GET /api/robots", res.status, res.body);
         const body = res.body;
+        expect(body instanceof Array).to.equal(true);
         expect(body[0]).to.contain.property("type");
         done();
       })
