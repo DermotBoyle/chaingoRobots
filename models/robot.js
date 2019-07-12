@@ -12,23 +12,26 @@ const RobotSchema = new Schema({
   },
   name: {
     type: String,
-    required: [true, "All robots need a name"]
+    required: [true, "All robots need a name"],
+    unique: true
   },
 
   serialnumber: {
-    type: String
+    type: String,
+    unique: true
   },
   weapons: {
     weapon: {
       type: String
     },
     serialnumber: {
-      type: String
+      type: String,
+      unique: true
     }
   },
   armours: {
     armour: { type: String },
-    serialnumber: { type: String }
+    serialnumber: { type: String, unique: true }
   },
 
   // are the robots operational or in the junkyard
